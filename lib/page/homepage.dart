@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 15,
+                        height: 20,
                       ),
                       Container(
                         // height: 200,
@@ -192,9 +192,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         child: Container(
                                           height: double.infinity,
                                           width: double.infinity,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onBackground,
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onBackground,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10),
+                                            ),
+                                          ),
                                           child: Icon(
                                             FontAwesomeIcons.shoppingBag,
                                             color: appData.customWhite,
@@ -368,7 +373,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   )),
             ),
             Positioned(
-              top: 15,
+              top: 20,
               left: 20,
               right: 0,
               child: Text(
