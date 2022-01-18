@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_wallet/page/addTransaction.dart';
+import 'package:my_wallet/page/dashboard.dart';
 import 'package:my_wallet/page/homepage.dart';
 import 'package:my_wallet/page/splashscreen.dart';
 import 'package:my_wallet/provider/appData.dart';
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.pink,
           colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: const Color(0xffEB5151),
             background: const Color(0xff2E2E37),
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
         routes: {
           HomePage.routeName: (context) => HomePage(),
           SplashScreen.routeName: (context) => SplashScreen(),
+          Dashboard.routeName: (context) => Dashboard(),
+          AddTransaction.routeName: (context) => AddTransaction(),
         },
       ),
     );

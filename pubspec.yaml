@@ -41,6 +41,9 @@ dependencies:
   font_awesome_flutter: any
   carousel_slider: any
   smooth_page_indicator: any
+  fl_chart: ^0.41.0
+  avatar_glow: any
+
 
 dev_dependencies:
   flutter_test:

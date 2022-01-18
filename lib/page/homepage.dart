@@ -1,9 +1,11 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_wallet/page/addTransaction.dart';
+import 'package:my_wallet/page/dashboard.dart';
 import 'package:my_wallet/provider/appData.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/homepage';
@@ -109,20 +111,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         ),
                       ),
                       const SizedBox(
-                        height: 5,
+                        height: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
                         child: Text(
                           'Transaction History',
-                          style: normalTextStyle.copyWith(fontSize: 25),
+                          style: normalTextStyle.copyWith(
+                              fontSize: 25, height: .8),
                         ),
                       ),
                       Container(
                         width: double.infinity,
                         height: 40,
                         // color: Theme.of(context).colorScheme.background,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 15),
                         child: TabBar(
                           isScrollable: true,
                           controller: tabController,
@@ -155,18 +158,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: ListView.builder(
                           itemCount: 12,
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int itemIndex) {
                             return Container(
-                              padding: EdgeInsets.symmetric(vertical: 1),
+                              padding: const EdgeInsets.symmetric(vertical: 1),
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
@@ -196,7 +199,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .onBackground,
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(10),
                                             ),
                                           ),
@@ -211,7 +215,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         child: Container(
                                             height: double.infinity,
                                             width: double.infinity,
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 10),
                                             child: Column(
                                               crossAxisAlignment:
@@ -273,13 +277,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: [
                   SizedBox(
                     height: double.infinity,
+                    width: 40,
                     // color: Colors.red,
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
+                        GestureDetector(
+                          onTap: () {},
+                          child: Icon(
                             FontAwesomeIcons.wallet,
                             color: appData.customWhite,
                             size: 30,
@@ -298,20 +303,35 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      FontAwesomeIcons.plusCircle,
-                      color: Theme.of(context).colorScheme.primary,
-                      size: 35,
+                  SizedBox(
+                    width: 40,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(AddTransaction.routeName);
+                      },
+                      child: AvatarGlow(
+                        endRadius: 50,
+                        glowColor: Colors.red,
+                        child: Icon(
+                          Icons.add,
+                          color: Theme.of(context).colorScheme.primary,
+                          size: 30,
+                        ),
+                      ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      FontAwesomeIcons.chartBar,
-                      color: appData.customWhite,
-                      size: 30,
+                  Container(
+                    width: 40,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(Dashboard.routeName);
+                      },
+                      child: Icon(
+                        FontAwesomeIcons.chartBar,
+                        color: appData.customWhite,
+                        size: 30,
+                      ),
                     ),
                   ),
                 ],
