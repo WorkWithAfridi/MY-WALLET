@@ -55,6 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Container(
               height: MediaQuery.of(context).size.width / 3,
               width: MediaQuery.of(context).size.width / 2,
+              // color: Colors.green,
               child: Lottie.asset(
                 'asset/lottieAnimations/lottieSplashScreen.json',
                 fit: BoxFit.fill
@@ -62,10 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Text(
               'MY WALLET',
-              style: normalTextStyle.copyWith(
-                fontSize: 30,
-                height: .5
-              ),
+              style: headerTextStyleWhite,
             )
           ],
         ),

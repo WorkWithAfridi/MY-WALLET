@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppData {
-  String fontForGoogleFonts = 'Dongle';
+  String fontForGoogleFonts = 'Roboto';
   Color customWhite=Color(0xffcccccc);
   late TextStyle headerTextStyleBlack = GoogleFonts.getFont(
     fontForGoogleFonts,
     textStyle: TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 25,
+      fontSize: 20,
       color: customWhite,
     ),
   );
@@ -16,8 +16,7 @@ class AppData {
     fontForGoogleFonts,
     textStyle: TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 25,
-      height: .5,
+      fontSize: 15,
       color: customWhite,
     ),
   );

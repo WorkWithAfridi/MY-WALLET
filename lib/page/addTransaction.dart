@@ -58,9 +58,7 @@ class _AddTransactionState extends State<AddTransaction> {
         // ),
         title: Text(
           'Add Transaction',
-          style: normalTextStyle.copyWith(
-            fontSize: 30,
-          ),
+          style: headerTextStyleWhite.copyWith(),
         ),
         // actions: [
         //   IconButton(
@@ -87,7 +85,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Text(
                   '*Select a transaction type:',
-                  style: normalTextStyle.copyWith(fontSize: 25, height: .8),
+                  style: headerTextStyleWhite.copyWith(),
                 ),
               ),
               const SizedBox(
@@ -118,7 +116,7 @@ class _AddTransactionState extends State<AddTransaction> {
                                 color: isIncome
                                     ? Theme.of(context).colorScheme.primary
                                     : Colors.white,
-                                fontSize: 45,
+                                fontSize: 30,
                                 height: 1),
                           ),
                         ),
@@ -151,7 +149,7 @@ class _AddTransactionState extends State<AddTransaction> {
                                 color: isIncome
                                     ? Colors.white
                                     : Theme.of(context).colorScheme.primary,
-                                fontSize: 45,
+                                fontSize: 30,
                                 height: 1),
                           ),
                         ),
@@ -178,12 +176,11 @@ class _AddTransactionState extends State<AddTransaction> {
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     label: Text('Amount'),
-                    labelStyle:
-                        normalTextStyle.copyWith(fontSize: 35, height: .2),
+                    labelStyle: headerTextStyleWhite.copyWith(),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     hintText: "Enter amount here...",
                     hintStyle:
-                        normalTextStyle.copyWith(fontSize: 25, height: .2),
+                    headerTextStyleWhite.copyWith(),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.blue, width: 1),
@@ -201,12 +198,11 @@ class _AddTransactionState extends State<AddTransaction> {
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     label: Text('Title'),
-                    labelStyle:
-                        normalTextStyle.copyWith(fontSize: 35, height: .2),
+                    labelStyle: headerTextStyleWhite.copyWith(),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     hintText: "Enter title here...",
                     hintStyle:
-                        normalTextStyle.copyWith(fontSize: 25, height: .2),
+                    headerTextStyleWhite.copyWith(),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.blue, width: 1),
@@ -228,12 +224,10 @@ class _AddTransactionState extends State<AddTransaction> {
                         Theme.of(context).colorScheme.primary.withOpacity(.1),
                     filled: true,
                     label: Text('Summary (Optional)'),
-                    labelStyle:
-                        normalTextStyle.copyWith(fontSize: 35, height: .2),
+                    labelStyle: headerTextStyleWhite.copyWith(),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     hintText: "Enter summary here, if any...",
-                    hintStyle:
-                        normalTextStyle.copyWith(fontSize: 25, height: .2),
+                    hintStyle: headerTextStyleWhite.copyWith(),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.blue, width: 1),

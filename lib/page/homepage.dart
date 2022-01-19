@@ -2,6 +2,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:my_wallet/model/transaction.dart';
 import 'package:my_wallet/model/userData.dart';
 import 'package:my_wallet/page/addTransaction.dart';
@@ -65,9 +66,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         title: Text(
           'MY WALLET',
-          style: normalTextStyle.copyWith(
-            fontSize: 30,
-          ),
+          style: headerTextStyleWhite,
         ),
         actions: [
           IconButton(
@@ -125,8 +124,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         padding: const EdgeInsets.symmetric(horizontal: 15.0),
                         child: Text(
                           'Transaction History',
-                          style: normalTextStyle.copyWith(
-                              fontSize: 25, height: .8),
+                          style: headerTextStyleWhite,
                         ),
                       ),
                       Container(
@@ -142,25 +140,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Tab(
                               child: Text(
                                 'Daily',
-                                style: normalTextStyle.copyWith(fontSize: 20),
+                                style: normalTextStyle,
                               ),
                             ),
                             Tab(
                               child: Text(
                                 'Weekly',
-                                style: normalTextStyle.copyWith(fontSize: 20),
+                                style: normalTextStyle,
                               ),
                             ),
                             Tab(
                               child: Text(
                                 'Monthly',
-                                style: normalTextStyle.copyWith(fontSize: 20),
+                                  style: normalTextStyle,
                               ),
                             ),
                             Tab(
                               child: Text(
                                 'Yearly',
-                                style: normalTextStyle.copyWith(fontSize: 20),
+                                style: normalTextStyle,
                               ),
                             ),
                           ],
@@ -257,12 +255,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                           width: double.infinity,
                                           alignment: Alignment.center,
                                           child: Text(
-                                            '${userData.userTransactions[itemIndex].isIncome ? '+' : '-'} ${userData.userTransactions[itemIndex].amount}TK',
+                                            '${userData.userTransactions[itemIndex].isIncome ? '+' : '-'}${userData.userTransactions[itemIndex].amount}TK',
                                             style: normalTextStyle.copyWith(
-                                                fontSize: 25,
-                                                color: userData.userTransactions[itemIndex].isIncome ? Colors.green: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary),
+                                                color: userData
+                                                        .userTransactions[
+                                                            itemIndex]
+                                                        .isIncome
+                                                    ? Colors.green
+                                                    : Theme.of(context)
+                                                        .colorScheme
+                                                        .primary),
                                           ),
                                         ),
                                       ),
@@ -409,7 +411,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               right: 0,
               child: Text(
                 title,
-                style: headerTextStyleWhite.copyWith(fontSize: 35),
+                style: headerTextStyleWhite.copyWith(fontSize: 25),
               ),
             ),
             Positioned(
@@ -418,7 +420,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               right: 0,
               child: Text(
                 subtitle,
-                style: headerTextStyleWhite.copyWith(fontSize: 30),
+                style: headerTextStyleWhite.copyWith(fontSize: 20),
               ),
             ),
             Positioned(
@@ -427,7 +429,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               right: 0,
               child: Text(
                 '${amount}TK',
-                style: headerTextStyleWhite.copyWith(fontSize: 30),
+                style: headerTextStyleWhite.copyWith(fontSize: 20),
               ),
             )
           ],

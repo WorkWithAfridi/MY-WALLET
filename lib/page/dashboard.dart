@@ -32,7 +32,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     normalTextStyle = appData.normalTextStyle;
     normalHighLightTextStyle = appData.normalHighLightTextStyle;
     tabController = TabController(length: 4, vsync: this);
-    userData=Provider.of<UserData>(context, listen: false);
+    userData = Provider.of<UserData>(context, listen: false);
   }
 
   @override
@@ -59,9 +59,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         // ),
         title: Text(
           'DASHBOARD',
-          style: normalTextStyle.copyWith(
-            fontSize: 30,
-          ),
+          style: headerTextStyleWhite,
         ),
         actions: [
           IconButton(
@@ -75,6 +73,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         ],
       ),
       body: Container(
+        height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
             SingleChildScrollView(
@@ -169,8 +168,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                       right: 0,
                                       child: Text(
                                         '${userData.userWallet}Tk',
-                                        style: headerTextStyleWhite.copyWith(
-                                            fontSize: 30),
+                                        style: normalTextStyle.copyWith(
+                                          fontSize: 20,
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     )
                                   ],
@@ -255,8 +255,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                       right: 0,
                                       child: Text(
                                         '${userData.userExpenses}Tk',
-                                        style: headerTextStyleWhite.copyWith(
-                                            fontSize: 30),
+                                        style: normalTextStyle.copyWith(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     )
                                   ],
@@ -275,7 +276,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Text(
                       'Stats',
-                      style: normalTextStyle.copyWith(fontSize: 25, height: .5),
+                      style: headerTextStyleWhite,
                     ),
                   ),
                   Container(
@@ -291,25 +292,25 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         Tab(
                           child: Text(
                             'Daily',
-                            style: normalTextStyle.copyWith(fontSize: 20),
+                            style: normalTextStyle,
                           ),
                         ),
                         Tab(
                           child: Text(
                             'Weekly',
-                            style: normalTextStyle.copyWith(fontSize: 20),
+                            style: normalTextStyle,
                           ),
                         ),
                         Tab(
                           child: Text(
                             'Monthly',
-                            style: normalTextStyle.copyWith(fontSize: 20),
+                            style: normalTextStyle,
                           ),
                         ),
                         Tab(
                           child: Text(
                             'Yearly',
-                            style: normalTextStyle.copyWith(fontSize: 20),
+                            style: normalTextStyle,
                           ),
                         ),
                       ],
@@ -323,7 +324,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Text(
                       'Report',
-                      style: normalTextStyle.copyWith(fontSize: 25, height: .5),
+                      style: headerTextStyleWhite,
                     ),
                   ),
                   SizedBox(
@@ -391,10 +392,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                                 alignment: Alignment.center,
                                                 child: Text(
                                                   '71%',
-                                                  style: headerTextStyleWhite
-                                                      .copyWith(
-                                                          fontSize: 30,
-                                                          height: .8),
+                                                  style:
+                                                      normalTextStyle.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.w800),
                                                 ),
                                               ),
                                               Container(
@@ -403,9 +404,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                                     '+ 17000Tk',
                                                     style: normalTextStyle
                                                         .copyWith(
-                                                            fontSize: 25,
-                                                            color: Colors.green,
-                                                            height: .8),
+                                                      color: Colors.green,
+                                                    ),
                                                   )),
                                             ],
                                           ),
@@ -430,10 +430,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "This week you saved 50% from the budget.",
-                                            style: normalTextStyle.copyWith(
-                                              fontSize: 25,
-                                              height: .7,
-                                            ),
+                                            style: normalTextStyle,
                                           ),
                                         ),
                                       )
@@ -499,10 +496,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                                 alignment: Alignment.center,
                                                 child: Text(
                                                   '50%',
-                                                  style: headerTextStyleWhite
-                                                      .copyWith(
-                                                          fontSize: 30,
-                                                          height: .8),
+                                                  style:
+                                                      normalTextStyle.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.w800),
                                                 ),
                                               ),
                                               Container(
@@ -511,9 +508,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                                     '- 33000Tk',
                                                     style: normalTextStyle
                                                         .copyWith(
-                                                            fontSize: 25,
-                                                            color: Colors.red,
-                                                            height: .8),
+                                                      color: Colors.red,
+                                                    ),
                                                   )),
                                             ],
                                           ),
@@ -538,10 +534,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "This week you spent significantly more than the previous.",
-                                            style: normalTextStyle.copyWith(
-                                              fontSize: 25,
-                                              height: .7,
-                                            ),
+                                            style: normalTextStyle,
                                           ),
                                         ),
                                       )
@@ -589,7 +582,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                       width: 40,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushNamed(AddTransaction.routeName);
+                          Navigator.of(context)
+                              .pushNamed(AddTransaction.routeName);
                         },
                         child: AvatarGlow(
                           endRadius: 50,
