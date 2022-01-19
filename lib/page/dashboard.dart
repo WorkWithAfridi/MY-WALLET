@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_wallet/model/userData.dart';
 import 'package:my_wallet/page/temp.dart';
 import 'package:my_wallet/provider/appData.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   late TextStyle normalHighLightTextStyle;
   late AppData appData;
   late TabController tabController;
+  late UserData userData;
 
   void getData(BuildContext context) {
     appData = Provider.of<AppData>(context, listen: false);
@@ -30,6 +32,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     normalTextStyle = appData.normalTextStyle;
     normalHighLightTextStyle = appData.normalHighLightTextStyle;
     tabController = TabController(length: 4, vsync: this);
+    userData=Provider.of<UserData>(context, listen: false);
   }
 
   @override
@@ -123,7 +126,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                             Radius.circular(10),
                                           ),
                                           child: Image.asset(
-                                            'asset/cardBackground/color (1).jpg',
+                                            'asset/cardBackground/color (3).jpg',
                                             fit: BoxFit.fill,
                                           )),
                                     ),
@@ -165,7 +168,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                       left: 20,
                                       right: 0,
                                       child: Text(
-                                        '12000Tk',
+                                        '${userData.userWallet}Tk',
                                         style: headerTextStyleWhite.copyWith(
                                             fontSize: 30),
                                       ),
@@ -251,7 +254,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                       left: 20,
                                       right: 0,
                                       child: Text(
-                                        '27000Tk',
+                                        '${userData.userExpenses}Tk',
                                         style: headerTextStyleWhite.copyWith(
                                             fontSize: 30),
                                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_wallet/model/userData.dart';
 import 'package:my_wallet/page/addTransaction.dart';
 import 'package:my_wallet/page/dashboard.dart';
 import 'package:my_wallet/page/homepage.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider(create: (context) => AppData()),
+        ChangeNotifierProvider(create: (context)=>UserData())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

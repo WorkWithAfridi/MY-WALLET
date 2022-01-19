@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_wallet/model/transaction.dart';
+import 'package:my_wallet/model/userData.dart';
 import 'package:my_wallet/provider/appData.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +20,10 @@ class _AddTransactionState extends State<AddTransaction> {
   late TextStyle normalHighLightTextStyle;
   late AppData appData;
   bool isIncome = true;
+  late UserData userData;
+  TextEditingController amountController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController summaryController = TextEditingController();
 
   void getData(BuildContext context) {
     appData = Provider.of<AppData>(context, listen: false);
@@ -25,6 +31,7 @@ class _AddTransactionState extends State<AddTransaction> {
     headerTextStyleWhite = appData.headerTextStyleWhite;
     normalTextStyle = appData.normalTextStyle;
     normalHighLightTextStyle = appData.normalHighLightTextStyle;
+    userData = Provider.of<UserData>(context, listen: false);
   }
 
   @override
@@ -167,9 +174,10 @@ class _AddTransactionState extends State<AddTransaction> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: TextField(
+                  controller: amountController,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    label: Text('*Amount'),
+                    label: Text('Amount'),
                     labelStyle:
                         normalTextStyle.copyWith(fontSize: 35, height: .2),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -189,9 +197,10 @@ class _AddTransactionState extends State<AddTransaction> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: TextField(
+                  controller: titleController,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    label: Text('*Title'),
+                    label: Text('Title'),
                     labelStyle:
                         normalTextStyle.copyWith(fontSize: 35, height: .2),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -211,13 +220,14 @@ class _AddTransactionState extends State<AddTransaction> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: TextField(
+                  controller: summaryController,
                   maxLines: 5,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     fillColor:
                         Theme.of(context).colorScheme.primary.withOpacity(.1),
                     filled: true,
-                    label: Text('Summary'),
+                    label: Text('Summary (Optional)'),
                     labelStyle:
                         normalTextStyle.copyWith(fontSize: 35, height: .2),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -238,7 +248,14 @@ class _AddTransactionState extends State<AddTransaction> {
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    userData.addTransaction(Transaction.name(
+                        isIncome,
+                        amountController.text,
+                        titleController.text,
+                        summaryController.text));
+                    Navigator.of(context).pop();
+                  },
                   child: Text('Save'),
                 ),
               )

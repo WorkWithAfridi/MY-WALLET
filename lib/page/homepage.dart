@@ -2,6 +2,8 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_wallet/model/transaction.dart';
+import 'package:my_wallet/model/userData.dart';
 import 'package:my_wallet/page/addTransaction.dart';
 import 'package:my_wallet/page/dashboard.dart';
 import 'package:my_wallet/provider/appData.dart';
@@ -32,8 +34,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     normalHighLightTextStyle = appData.normalHighLightTextStyle;
     carouselSliderController = CarouselController();
     tabController = TabController(length: 4, vsync: this);
+    userData = Provider.of<UserData>(context, listen: false);
+    userData.updateData("Khondakar Afridi", '52000', '12000', '15000', []);
+    userData.addTransaction(Transaction.name(false, '1200', 'Haircut', ''));
+    userData.addTransaction(Transaction.name(false, '460', 'Birdfood', ''));
   }
 
+  late UserData userData;
   @override
   void initState() {
     getData(context);
@@ -86,7 +93,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Container(
                         // height: 200,
@@ -99,19 +106,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             return getCard(itemIndex);
                           },
                           options: CarouselOptions(
-                              // onPageChanged: updatePageIndicator(),
-                              autoPlay: false,
-                              viewportFraction: .80,
-                              aspectRatio: 19 / 9,
-                              initialPage: 1,
-                              enlargeCenterPage: true,
-                              reverse: false,
-                              enableInfiniteScroll: false,
-                              scrollPhysics: const BouncingScrollPhysics()),
+                            // onPageChanged: updatePageIndicator(),
+                            autoPlay: false,
+                            viewportFraction: .80,
+                            aspectRatio: 19 / 9,
+                            initialPage: 1,
+                            enlargeCenterPage: true,
+                            reverse: false,
+                            enableInfiniteScroll: false,
+                            scrollPhysics: const BouncingScrollPhysics(),
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -164,7 +172,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: ListView.builder(
-                          itemCount: 12,
+                          itemCount: userData.userTransactions.length,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int itemIndex) {
@@ -224,7 +232,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Shopping',
+                                                  userData
+                                                      .userTransactions[
+                                                          itemIndex]
+                                                      .title,
                                                   style: headerTextStyleWhite,
                                                 ),
                                                 Text(
@@ -246,10 +257,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                           width: double.infinity,
                                           alignment: Alignment.center,
                                           child: Text(
-                                            '- 45000Tk',
+                                            '${userData.userTransactions[itemIndex].isIncome ? '+' : '-'} ${userData.userTransactions[itemIndex].amount}TK',
                                             style: normalTextStyle.copyWith(
                                                 fontSize: 25,
-                                                color: Theme.of(context)
+                                                color: userData.userTransactions[itemIndex].isIncome ? Colors.green: Theme.of(context)
                                                     .colorScheme
                                                     .primary),
                                           ),
@@ -350,17 +361,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     if (itemIndex == 0) {
       title = 'Personal Expenses';
       subtitle = 'Total Spendings:';
-      amount = '12000Tk';
+      amount = userData.userExpenses;
     }
     if (itemIndex == 1) {
       title = 'Personal Wallet';
       subtitle = 'Current Balance:';
-      amount = '80000Tk';
+      amount = userData.userWallet;
     }
     if (itemIndex == 2) {
       title = 'Personal Saving';
       subtitle = 'Total Saving:';
-      amount = '34000Tk';
+      amount = userData.userSaving;
     }
     return Card(
       shape: const RoundedRectangleBorder(
@@ -372,8 +383,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       child: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Colors.yellow,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.onBackground,
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
@@ -415,7 +426,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               left: 20,
               right: 0,
               child: Text(
-                amount,
+                '${amount}TK',
                 style: headerTextStyleWhite.copyWith(fontSize: 30),
               ),
             )
