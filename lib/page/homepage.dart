@@ -48,16 +48,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.initState();
   }
 
+  GlobalKey<ScaffoldState> scaffoldStateKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldStateKey,
       backgroundColor: Theme.of(context).colorScheme.onBackground,
+      drawer: Drawer(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onBackground,
         elevation: 6,
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            scaffoldStateKey.currentState!.openDrawer();
+          },
           icon: Icon(
             FontAwesomeIcons.bars,
             color: appData.customWhite,
